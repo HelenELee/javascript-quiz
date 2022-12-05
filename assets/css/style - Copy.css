@@ -1,0 +1,150 @@
+:root {
+    --space-grey: #33393f;
+    --light-blue: blue;
+    --gin: #e0eae4;
+    --light-purple: #e866ec;
+    --orange: orange;
+    --white: white;
+    --dark-purple:#8B008B;
+    --thistle: #D8BFD8;
+    --plum:#DDA0DD;
+  }
+  
+  /* set content highlight color and background */
+::selection {
+    background-color: var(--white);
+    color: var(--light-blue);
+}
+  
+ 
+    /* set default font to 10px */
+html {
+  font-size: 62.5%;
+}
+  
+body {
+  font-family: Arial, sans-serif;
+  margin: 0px;
+  line-height: 1.5;
+}
+  
+h1, h2, h3 {
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  color: var(--space-grey);
+}
+  
+h1 {
+  font-size: 4rem;
+  font-weight: 700;
+}
+  
+h2 {
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+nav {
+    background-color: var(--gin);
+    margin: 0px;
+    padding: 5px;
+        
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+    align-items: stretch;
+    align-content: space-evenly;
+
+  }
+
+.high-scores {
+  margin-left:10px;
+  
+}
+
+.blink {
+  animation: blinker 1s step-start infinite;
+}
+
+.center {
+    margin: 30px 100px;
+    width: 70%;
+   // border: 3px solid green;
+    padding: 10px;
+    text-align: center;
+}
+
+.timer-up {
+  color: red;
+  font-weight: bold;
+  animation: blinker 1s step-start infinite;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
+
+.dynamic-content {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+button {
+    background-color: var(--dark-purple);
+    color: var(--white);
+    border: solid 1px;
+    border-radius: 12%;
+    padding: 8px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1.25rem;
+  }
+
+.question-container {
+    border: 3px;
+    text-align: center;
+  }
+
+.question-option {
+  background-color: var(--dark-purple);
+  color:var(--white);
+  border: 1px;
+  margin:10px;
+  text-align: left;
+  list-style-type: none;
+  width:50%;
+  font-size: 1.25rem;
+  font-weight:lighter;
+  margin:5px;
+  padding:5px;
+}
+
+.label {
+  font-size: 1.25rem;
+  font-weight:600;
+}
+
+.italics {
+  font-style: italic;
+  font-size: 2rem;
+  margin-top: 20px;
+}
+
+.question-option:hover {
+  box-shadow: inset 0px 0px 10px var(--dark-purple), 0 0 10px var(--dark-purple);
+}
+
+.high-scores-list:nth-child(odd) {
+  background-color: var(--thistle);
+}
+
+
+    
+
+
+  
+  
