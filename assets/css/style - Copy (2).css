@@ -1,12 +1,23 @@
 :root {
     --space-grey: #33393f;
+    --light-blue: blue;
+    --gin: #e0eae4;
     --light-purple: #e866ec;
+    --orange: orange;
     --white: white;
     --dark-purple:#8B008B;
     --thistle: #D8BFD8;
+    --plum:#DDA0DD;
   }
   
-/* set default font to 10px */
+  /* set content highlight color and background */
+::selection {
+    background-color: var(--white);
+    color: var(--light-blue);
+}
+  
+ 
+    /* set default font to 10px */
 html {
   font-size: 62.5%;
 }
@@ -16,17 +27,13 @@ body {
   margin: 0px;
   line-height: 1.5;
   width: 100%;
+  border: 1px black;
 }
-
-header { 
-  background-color: var(--space-grey);
-  color: #ffffff;
+  
+header {
+  margin:0px;
+  width:100%;
 }
-
-header a{
-  color: var(--white);
-}
-
 h1, h2, h3 {
   font-family: Arial, Helvetica, sans-serif;
   text-align: center;
@@ -44,40 +51,71 @@ h2 {
 }
 
 nav {
-  display:inline;
   width: 100%;
+  margin:0px;
   padding:10px;
 }
-/*high scores link*/
-nav a {
-  display:inline;
-  text-decoration: none;
-}
+/*
+nav {
+    background-color: var(--gin);
+    margin: 0px;
+    padding: 5px;
+        
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+    align-items: stretch;
+    align-content: space-evenly;
 
+  }
+*/
 .high-scores {
   margin-left:10px;
   float:left;
   display: inline;
-  padding: 10px;
 }
 
+.blink {
+  animation: blinker 1s step-start infinite;
+}
 main {
   display: flex;
   align-items: center;
   justify-content: center
 }
-/*ensure questions are centered*/
+/*
+.center {
+  margin: 30px 100px;
+    width: 70%;
+    padding: 10px;
+    text-align: center;
+    border: 1px black;
+}
+*/
 .center {
     padding: 10px;
     text-align: center;
-    width: 400px;
 }
-/*display timer to the right*/
+
 .timer {
+  margin-right: 10px;
   display:inline;
   float:right;
 }
-/*question content*/
+
+.timer-up {
+  color: red;
+  font-weight: bold;
+  animation: blinker 1s step-start infinite;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
+
 .dynamic-content {
   font-size: 1.5rem;
   font-weight: 700;
@@ -95,7 +133,11 @@ button {
     font-size: 1.25rem;
   }
 
-/*multi choice options */
+.question-container {
+    border: 3px;
+    text-align: center;
+  }
+
 .question-option {
   background-color: var(--dark-purple);
   color:var(--white);
@@ -109,28 +151,28 @@ button {
   margin:5px;
   padding:5px;
 }
-/*initials screen*/
+
 .label {
   font-size: 1.25rem;
   font-weight:600;
 }
-/* result correct/wrong*/
+
 .italics {
   font-style: italic;
   font-size: 2rem;
   margin-top: 20px;
 }
-/*hover over multi choice options*/
+
 .question-option:hover {
   box-shadow: inset 0px 0px 10px var(--dark-purple), 0 0 10px var(--dark-purple);
 }
-/*alternate colours for list of high scores*/
+
 .high-scores-list:nth-child(odd) {
   background-color: var(--thistle);
 }
 
 
-  
+    
 
 
   

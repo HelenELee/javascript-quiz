@@ -1,47 +1,11 @@
-//alert("hello");
-const q1 = {
-    question:"Commonly used Data types do not include",
-    option1: "1. strings",
-    option2: "2. booleans",
-    option3: "3. alerts",
-    option4: "4. numbers",
-    answer: "3. alerts"
-}
-
-const q2 = {
-    question:"The condition if and if/else statement is enclosed within _____",
-    option1: "1. quotes",
-    option2: "2. curly brackets",
-    option3: "3. parenthesis",
-    option4: "4. square brackets",
-    answer: "3. parenthesis"
-}
-
-const q3 = {
-    question:"Arrays in javascript can be used to store _____",
-    option1: "1. numbers and strings",
-    option2: "2. other arrays",
-    option3: "3. booleans",
-    option4: "4. all of the above",
-    answer: "4. all of the above"
-}
-
-const q4 = {
-    question:"4. The condition if and if/else statement is enclosed within _____",
-    option1: "1. quotes",
-    option2: "2. curly brackets",
-    option3: "3. parenthesis",
-    option4: "4. square brackets",
-    answer: "3. parenthesis"
-}
-
-const arrayQuestions = [q1, q2, q3, q4];
+//note questions and array of questions in questions.js
 
 var score = 0;
-var timeLeft = 5;
-var questionCount = 0;
-var timeInterval;
+var timeLeft = 50; //number of seconds allowed for quiz
+var questionCount = 0; //track what question we are up to
+var timeInterval; //user for overall timer
 
+//get elements 
 var startBtn = document.getElementById("start-quiz");
 var mainH1 = document.getElementById("main-heading");
 var mainContent = document.getElementById("main-content");
@@ -51,219 +15,225 @@ var timer = document.getElementById("timer");
 var result = document.getElementById("result");
 var listEl = document.createElement("ul");
 var form = document.createElement("form");
-//alert(mainH1.textContent);
 
+//creates timer for quiz
+//time remaining is updated evey second
 function countdown() {
-    
-  
-    // TODO: Use the `setInterval()` method to call a function to be executed every 1000 milliseconds
     timeInterval = setInterval(function () {
-      
+      //decerment count and display time
       timeLeft--;
       timer.textContent = "Time: " + timeLeft + " seconds remaining.";
+      //check if times up
       if(timeLeft === 0) {
-        // Stops execution of action at set interval
         timer.textContent = "";
-        clearInterval(timeInterval);
-        timer.textContent = "Time up!!!";
-        timer.className = "timer-up";
-        timeUp();
+        clearInterval(timeInterval); 
+        timeUp(); //alert to tell user time is up
+        //if not already at the initials screen
+        //clear questions and load initials screen
         if (!document.getElementById("initials-form")){
-            clearScreen();
-            getInitials();
+            clearScreen(); //removes elements for questions
+            getInitials(); //print screen to get initials
         }
         
       }
     }, 1000);
   }
 
-  function loadNextQuestion() {
-    //alert("loading next question...");
-    var timeInterval = setTimeout(function () {
-        alert("loaded");
-    } , 3000);
-  }
-
+//creates the elements for holding the question and multi choice answers
 function createQuestion(){
-   // var listEl = document.createElement("ul");
-   mainContent.appendChild(listEl);
-   listEl.setAttribute("id", "question-container");
-   
-   //var li1 = document.createElement("li");
-    //li1.textContent = questionObj["option"+ 1];
-    //mainContent.appendChild(li1);
+    mainContent.appendChild(listEl); //apend unordered list for questions
+    listEl.setAttribute("id", "question-container");
     
     // Create unordered list items
     for (var i=1; i<5; i++){
         var li1 = document.createElement("li");
-       // li1.textContent = questionObj["option"+ i];
         li1.setAttribute("id", "option" + i);
         li1.setAttribute("class", "question-option");
         listEl.appendChild(li1);
     }
-
-    listEl.addEventListener("click", getAnswer);
+    //add event listener so when answer is clicked 
+    //we check to see if its correct
+    listEl.addEventListener("click", getAnswerHandler);
 
 }
-
+//atually load the question and multi choice answers into the 
+//elemens created previously
 function loadQuestionContent() {
-    console.log("count = " + questionCount);
-    var questionObj;
+    var questionObj; //holds the question details from the array of questions
+
+    //check we still have questions to load and the time is not up
     if (questionCount < arrayQuestions.length && timeLeft > 0) {
+        //write question to screen
         questionObj = arrayQuestions[questionCount];
         mainH1.innerHTML = questionObj.question;
+        //write multi choice answers to screen 
         for (var i=1; i<5; i++){
             document.getElementById("option" + i).textContent = questionObj["option" + i];
         }
     } else {
-       // alert("end of quiz");
+       // either we have run out of questions or the time is up;
+       //clear the time (time may already be up)
         clearInterval(timeInterval);
+        //check if we have already reached the initials screen
+        //reach it if all questions were answered
+        //load initials screen if not already there
         if (!document.getElementById("initials-form")){
-            clearScreen();
+            clearScreen(); //remove elements for questions and answers
             getInitials();
         }
         
     }
     
 }
-
+//let user know if time is up
 function timeUp() {
     clearInterval(timeInterval);
-    alert("time up!!");
+    alert("Sorry time is up!!");
 }
-
-function getAnswer(event) {
-    //alert(event.target.textContent);
+//function called when multi choice answer is clicked
+function getAnswerHandler(event) {
+    //get value of clicked answer
     var answer = event.target.textContent;
-
-    var answer = event.target.textContent;
-       console.log(answer + " " + arrayQuestions[questionCount].answer);
-
-        if (answer === arrayQuestions[questionCount].answer) {
+    //check if its the correct by comparing to answer stored in
+    //question object
+    //print result
+    if (answer === arrayQuestions[questionCount].answer) {
             result.innerHTML = "<hr><span class='italics'>Correct!</span>"
             score++;
-           // alert('correct');
-        } else {
+          
+    } else {
             result.innerHTML = "<hr><span class='italics'>Wrong!</span>"
             timeLeft=timeLeft-5;
-           // alert('wrong');
-        }
-        questionCount++;
-        if (timeLeft >0) {
-            var timeInterval = setTimeout(loadQuestionContent, 1000);
-        } else {
-            timeUp();
-            clearScreen();
-            getInitials();
-        }
+           
+    }
+    //update question count - used as index into array of questions 
+    questionCount++;
+    //check if we still have time to do another question
+    if (timeLeft >0) {
+        //load next question
+        var timeInterval = setTimeout(loadQuestionContent, 500);
+    } else {
+        //no time left, tell user, clear questions elements and load initials screen
+        timeUp();
+        clearScreen();
+        getInitials();
+    }
         
 }
-
+//remove elements we dont need at this stage of the quiz
 function clearScreen() {
-    console.log("clearScreen");
-
-    mainH1.innerHTML = "";
-    mainP.innerHTML = "";
     
+    mainH1.innerHTML = ""; //clear H1 which holds questions
+    mainP.innerHTML = ""; //clear initial P that held introductory paragraph
+    mainP.style.display = "none";
+    //remove start button
     if (document.getElementById("start-quiz")) {
         document.getElementById("start-quiz").style.display = "none";
     }
+    //remove any elements from questions
     while (listEl.hasChildNodes()) {
         listEl.removeChild(listEl.firstChild);
     }
-
+    //remove div that holds question elements
     while (mainContent.hasChildNodes()) {
-        console.log("removing child");
         mainContent.removeChild(mainContent.firstChild);
     }
+    //clear correct/wrong message
     result.innerHTML = "";
-    mainP.style.display = "none";
+    
 }
 
-
-function startQuiz(event) {
-    event.preventDefault();
-    score = 0;
+//handler thats called when start button is clicked
+function startQuizHandler(event) {
+    event.preventDefault(); //prevent submitting of form
+    score = 0; //initially score is 0
     timer.className = "timer";
-    countdown();
+    countdown(); //start timer
+
+    //remove initial paragraph with instructions
     mainP.textContent = "";
     mainP.style.display = "none";
-    startBtn.style.display = "none";
-    createQuestion();
-    loadQuestionContent();
-    
-    
-    //mainContent.innerHTML = "questions";
-
+    startBtn.style.display = "none"; //remove start button
+    createQuestion(); //create elements for questions
+    loadQuestionContent(); //load questions content
 }
-
+//called when reached ens fo all questions
+//loads screen prompting for initials
 function getInitials() {
+    timer.textContent = "Time: 0 seconds remaining.";
     mainH1.textContent = "All done!";
     mainP.textContent = "Your final score is " + score;
     mainP.style.display = "block";
+
+    //create label for field used for initals
     var initialsLabel = document.createElement("label");
     initialsLabel.setAttribute("for", "input");
     initialsLabel.textContent ="Enter initials:";
     initialsLabel.setAttribute("class", "label");
-
+    
+    //create field for initials
     var input = document.createElement("input");
     input.setAttribute("id", "initials");
+    input.maxLength = "2"; //only allow user enter 2 initials
 
+    //create submit button
     var submitInitials = document.createElement("button");
     submitInitials.setAttribute("id", "submit-initials");
     submitInitials.innerText = "Submit";
 
+    //append form and set attributes
     mainContent.appendChild(form);
     form.setAttribute("id", "initials-form");
     form.appendChild(initialsLabel);
     form.appendChild(input);
     form.appendChild(submitInitials);
-
-    submitInitials.addEventListener("click", saveScore);
+    //add listener for click event on submit button
+    submitInitials.addEventListener("click", saveScoreHandler);
 }
-
-function saveScore(event){
-    console.log("saveScore");
-    event.preventDefault();
-  var arrayScores;
-
-  if (document.getElementById("initials").value == ''){
-    alert("Please enter your initials.");
-    return;
-  }
-  var currentScore = {
+//function called when initials are submitted
+function saveScoreHandler(event){
+    event.preventDefault(); //prevent submitting of form
+    var arrayScores;
+    //get array of stored scores
+    var storedScores = localStorage.getItem("scores");
+    //validation - must enter initials
+    if (document.getElementById("initials").value == ''){
+     alert("Please enter your initials.");
+     return;
+    }
+    //create object from current score and initials
+    var currentScore = {
     initials: document.getElementById("initials").value,
     score: score
-  }  
-  var storedScores = localStorage.getItem("scores");
-
-  if (storedScores == null){
-    arrayScores = [currentScore];
-  } else {
-    arrayScores = JSON.parse(storedScores);
-    arrayScores.push(currentScore);
+   }  
+  
+   //check if this is the first score we are saving
+   if (storedScores == null){
+     arrayScores = [currentScore];
+   } else {
+    //already have saved scores so push current onto array
+     arrayScores = JSON.parse(storedScores);
+     arrayScores.push(currentScore);
   }
-  localStorage.setItem("scores", JSON.stringify(arrayScores));
-  console.log(arrayScores);
-  printHighScores();
+   //save all scores to local storage again - including current score
+   localStorage.setItem("scores", JSON.stringify(arrayScores));
+   //call function to print scores to screen
+   printHighScores();
 }
 
-function removeInitialsForm() {
-    mainH1.textContent = "";
-    mainP.textContent = "";
-}
-
+//fuction to print all scores to screen
 function printHighScores () {
     var liElement;
     var arrayScores;
     var scoreObj;
-    clearScreen();
+    clearScreen(); //ensure all questions elements have been removed
     mainH1.textContent = "High Scores";
     var scores = localStorage.getItem("scores");
-    if (scores == null){
-
-    } else {
+    //check there are scores to print
+    if (scores != null){
+        //convert to array from string
         arrayScores = JSON.parse(scores);
+        //loop through array of scores and print
         for (let i=0; i<arrayScores.length; i++){
             liElement = document.createElement("li");
             liElement.setAttribute("class", "high-scores-list");
@@ -271,38 +241,38 @@ function printHighScores () {
             liElement.textContent = (i+1) + ". " + scoreObj.initials + " " + scoreObj.score 
             listEl.appendChild(liElement);
         }
-        mainContent.appendChild(listEl); 
+        mainContent.appendChild(listEl); //display scores
     }
+    //create back button
     var backButton = document.createElement("button");
     backButton.setAttribute("id", "back-button");
     backButton.innerText = "Back";
     
-
+    //create buton to clear scores from storage
     var clearHighScores = document.createElement("button");
     clearHighScores.setAttribute("id", "clear-high-scores");
     clearHighScores.innerText = "Clear High Scores";
     
-
+    //display buttons
     mainContent.appendChild(backButton);
     mainContent.appendChild(clearHighScores);
-    
-    backButton.addEventListener("click", goBack);
-    //clearHighScores.addEventListener("click", clearHighScores);
-    clearHighScores.addEventListener("click", clearHigh);
+    //add event listeners to buttons
+    backButton.addEventListener("click", goBackHandler);
+    clearHighScores.addEventListener("click", clearHighHandler);
 }
-
-function clearHigh(event) {
-    console.log("clearing high scores");
+//function called to remove stored scores from local storage
+function clearHighHandler(event) {
     event.preventDefault();
     localStorage.removeItem("scores");
-    printHighScores();
+    //re print scores i.e no scores
+    printHighScores(); 
 }
 
-function goBack() {
-    console.log('go back');
+//function called when click back button - brigs you to start page again
+function goBackHandler() {
     location.reload();
 }
+//add function to start quiz
+startBtn.addEventListener("click", startQuizHandler);
 
-startBtn.addEventListener("click", startQuiz);
-//localStorage.removeItem("scores");
 

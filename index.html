@@ -8,30 +8,34 @@
   <link rel="stylesheet" href="./assets/css/style.css" />
 </head>
 <body>
-<header>
-    <nav>  
-        <a href="javascript:printHighScores()" class="high-scores" id="high-scores">View High Scores</a>
-        <p id="timer"></p>
-     </nav>
-</header>
-<!--
-    <ul>
-             <li><a href="#" id="high-scores">View High Scores</a></li>
-             <li>Time: <span id="timer"></span></li>
-         </ul>
--->
+<!--nav contains link to high score and timer-->
+    <header>
+        <nav>  
+            <a href="javascript:printHighScores()" class="high-scores" id="high-scores">View High Scores</a>
+            <p id="timer"></p>
+        </nav>
+    </header>
+
+
 <main>
     <section class="center">
+        <!--Everything inside the section changes depending on what 
+        stage of the quiz we are at-->
+
+        <!--main-heading holds the titles and questions-->
         <h1 id="main-heading">Coding Quiz Challenge</h1>
+       <!--main-paragraph only used in initial screen-->
         <p class="center dynamic-content" id="main-paragraph">
             Try to answer the following code related questions within the time limit.
             Keep in mind that incorrect answers will penalize your score/time.
         </p>
-        <div class="center dynamic-content"> 
-            <h2 id="question"></h2>
-            <div class="content" id="main-content">
+        <div class="dynamic-content">  
+            <!--main-content holds the questions,get initials form and high scores-->
+ 
+            <div class="center" id="main-content">
                 
             </div>
+            <!--just holds start button-->
             <button class="button" id="start-quiz">Start Quiz</button>
             
             <p class="result" id="result"></p>
@@ -39,10 +43,7 @@
         
     </section>
 </main>
-    
-    
-
-    
-  <script src="./assets/js/script.js"></script>
+    <script src="./assets/js/questions.js"></script>
+    <script src="./assets/js/script.js"></script>
 </body>
 </html>
