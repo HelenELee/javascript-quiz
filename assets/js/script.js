@@ -103,7 +103,7 @@ function getAnswerHandler(event) {
           
     } else {
             result.innerHTML = "<hr><span class='italics'>Wrong!</span>"
-            timeLeft=timeLeft-5;
+            timeLeft=timeLeft-5; //reduce time by 5 seconds
            
     }
     //update question count - used as index into array of questions 
@@ -111,6 +111,8 @@ function getAnswerHandler(event) {
     //check if we still have time to do another question
     if (timeLeft >0) {
         //load next question
+        //use setTimeout to slightly delay loading of next questions
+        //allows user to see result of previous question
         var timeInterval = setTimeout(loadQuestionContent, 500);
     } else {
         //no time left, tell user, clear questions elements and load initials screen
