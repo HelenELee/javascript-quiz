@@ -25,9 +25,11 @@ Please read the comments in script.js file to see the explanation of how the cod
 
 Below is a screenshot of the webpage. 
 
-![Image](./assets/images/javascript-quiz.jpg?raw=true "Screenshot")
+![Image](./assets/images/javascript-quiz-start.jpg?raw=true "Screenshot")
+![Image](./assets/images/javascript-quiz-question.jpg?raw=true "Screenshot")
+![Image](./assets/images/javascript-quiz-scores.jpg?raw=true "Screenshot")
 
-[To view the password generator webpage click here.](https://helenelee.github.io/javascript-quiz/)
+[To view the javascript quiz webpage click here.](https://helenelee.github.io/javascript-quiz/)
 
 ## Future Enhancements
 

@@ -63,6 +63,7 @@ function loadQuestionContent() {
 
     //check we still have questions to load and the time is not up
     if (questionCount < arrayQuestions.length && timeLeft > 0) {
+        result.innerHTML = "";
         //write question to screen
         questionObj = arrayQuestions[questionCount];
         mainH1.innerHTML = questionObj.question;
