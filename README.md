@@ -1,7 +1,7 @@
 # Javascript Quiz
 
 ## Description
-This quiz was developed to test users javascript knowledge and track the scores achieved in a set time. Users start the quiz by clicking the "Start" button. They are presented with several questions one at a time and can choose the correct answer by clicking on the multi choice option. They are told immediately if they are correct or wrong and the next question is automatically loaded. If they choose an incorrect answer the time is reduced by 5 seconds. They are finished when either the time is up or they have completed all questions. They are prompted for their initials and then their score is stored. They have the option to view the stored scores by clicking the High Scores link in the top left hand side of the nav. The time remaining is displayed in the top right of the nav.
+This quiz was developed to test users javascript knowledge and track the scores achieved in a set time. Users start the quiz by clicking the "Start" button. They are presented with several questions one at a time and can choose the correct answer by clicking on the multi choice option. They are told immediately if they are correct or wrong and the next question is automatically loaded. If they choose an incorrect answer the time is reduced by 5 seconds. They are finished when either the time is up or they have completed all questions. They are prompted for their initials and then their score is stored. They have the option to view the stored scores by clicking the High Scores link in the top left hand side of the nav. Scores are displayed in reverse order - best score at the top. The time remaining is displayed in the top right of the nav.
 
 The javascript quiz is developed using a combination of HTML, CSS and Javascript.
 
@@ -32,9 +32,6 @@ Below is a screenshot of the webpage.
 
 [To view the javascript quiz webpage click here.](https://helenelee.github.io/javascript-quiz/)
 
-## Future Enhancements
-
-Add validation to the screen where initials are entered to ensure initials are unique.
 
 ## Credits
 
