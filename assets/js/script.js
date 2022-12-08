@@ -224,10 +224,6 @@ function saveScoreHandler(event){
    printHighScores();
 }
 
-function sortHighScores() {
-    objs.sort((a,b) => b.last_nom - a.last_nom); // b - a for reverse sort
-}
-
 //fuction to print all scores to screen
 function printHighScores () {
     var liElement;
@@ -240,6 +236,7 @@ function printHighScores () {
     if (scores != null){
         //convert to array from string
         arrayScores = JSON.parse(scores);
+        arrayScores = arrayScores.sort((a,b) => b.score - a.score); // b - a for reverse sort
         //loop through array of scores and print
         for (let i=0; i<arrayScores.length; i++){
             liElement = document.createElement("li");
