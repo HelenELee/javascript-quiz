@@ -44,4 +44,51 @@ const q5 = {
     answer: "4. myFunction()"
 }
 
-const arrayQuestions = [q1, q2, q3, q4, q5];
+const q6 = {
+    question:"Inside which HTML element do we put the JavaScript?",
+    option1: "1. <javascript>",
+    option2: "2. <js>",
+    option3: "3. <scripting>",
+    option4: "4. <script>",
+    answer: "4. <script>"
+}
+
+const q7 = {
+    question:"What is the correct syntax for referring to an external script called 'xxx.js'?",
+    option1: "1. <script name='xxx.js'>",
+    option2: "2. <script src='xxx.js'>",
+    option3: "3. <script href='xxx.js'>",
+    option4: "4. <script link='xxx.js'>",
+    answer: "2. <script src='xxx.js'>"
+}
+
+const q8 = {
+    question:"How do you write 'Hello World' in an alert box?",
+    option1: "1. alertBox('Hello World')",
+    option2: "2. msgBox('Hello World')",
+    option3: "3. msg('Hello World')",
+    option4: "4. alert('Hello World')",
+    answer: "4. alert('Hello World')"
+}
+
+const q9 = {
+    question:"How does a WHILE loop start?",
+    option1: "1. while (i=10; i++)",
+    option2: "2. while i=1 to 10",
+    option3: "3. while",
+    option4: "4. while (i<=10)",
+    answer: "4. while (i<=10)"
+}
+
+const q10 = {
+    question:"How do you round the number 7.25, to the nearest integer?",
+    option1: "1. round(7.25)",
+    option2: "2. Math.round(7.25)",
+    option3: "3. rnd(7.25)",
+    option4: "4. Math.rnd(7.25)",
+    answer: "2. Math.round(7.25)"
+}
+
+
+
+const arrayQuestions = [q1, q2, q3, q4, q5, q6, q7, q8, q9, q10];

@@ -59,7 +59,7 @@ function createQuestion(){
 //atually load the question and multi choice answers into the 
 //elemens created previously
 function loadQuestionContent() {
-    var questionObj; //holds the question details from the array of questions
+    let questionObj; //holds the question details from the array of questions
 
     //check we still have questions to load and the time is not up
     if (questionCount < arrayQuestions.length && timeLeft > 0) {
