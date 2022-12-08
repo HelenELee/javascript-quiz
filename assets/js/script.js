@@ -224,6 +224,10 @@ function saveScoreHandler(event){
    printHighScores();
 }
 
+function sortHighScores() {
+    objs.sort((a,b) => b.last_nom - a.last_nom); // b - a for reverse sort
+}
+
 //fuction to print all scores to screen
 function printHighScores () {
     var liElement;
