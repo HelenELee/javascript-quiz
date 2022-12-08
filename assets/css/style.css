@@ -43,6 +43,10 @@ h2 {
   font-weight: 500;
 }
 
+.nav-class {
+  height: 100px;
+}
+
 nav {
   display:inline;
   width: 100%;
